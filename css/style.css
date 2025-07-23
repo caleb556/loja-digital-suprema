@@ -1,0 +1,317 @@
+/* Estilos gerais */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #121212;
+    color: #e4e4e7;
+    margin: 0;
+    padding: 120px 0 0 0;
+    /* Espaço para o header fixo */
+}
+
+/* Header fixo */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 40px;
+    background-color: #1e1e1e;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 1000;
+}
+
+nav a {
+    color: #e4e4e7;
+    text-decoration: none;
+    font-weight: 700;
+    margin: 0 20px;
+}
+
+nav a:hover {
+    color: #0a84ff;
+}
+
+/* Banner */
+.banner {
+    background: linear-gradient(90deg, #0a84ff 0%, #0056b3 100%);
+    padding: 60px 20px;
+    font-size: 2.5rem;
+    font-weight: 700;
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+/* Espaçamento após os produtos */
+.products-section {
+    margin-bottom: 60px;
+    /* ou 4rem */
+}
+
+.product-card {
+    background-color: #1e1e1e;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(10, 132, 255, 0.3);
+    width: 280px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.2s ease;
+}
+
+.product-card:hover,
+.product-card:focus {
+    transform: scale(1.05);
+    outline: none;
+    box-shadow: 0 0 15px #0a84ff;
+}
+
+.product-image {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 15px;
+}
+
+.product-title {
+    font-size: 1.2rem;
+    font-weight: 900;
+    margin-bottom: 10px;
+    text-align: center;
+}
+
+.product-description {
+    font-size: 0.9rem;
+    text-align: center;
+    margin-bottom: 15px;
+    color: #cfd2d7;
+}
+
+.product-price {
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: #0a84ff;
+    margin-bottom: 15px;
+}
+
+/* Botões de compra e carrinho */
+button.add-to-cart,
+.btn-add-carrinho {
+    background-color: #00aaff;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    margin-top: 10px;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.3s ease;
+}
+
+button.add-to-cart:hover,
+.btn-add-carrinho:hover {
+    background-color: #0077cc;
+}
+
+/* Carrinho flutuante */
+#carrinho-flutuante {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    width: 250px;
+    z-index: 999;
+}
+
+#toggle-carrinho {
+    width: 100%;
+    background-color: #28a745;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#carrinho-container {
+    margin-top: 10px;
+}
+
+#lista-carrinho {
+    list-style: none;
+    padding-left: 0;
+    margin-bottom: 10px;
+}
+
+/* Seções de conteúdo */
+#about {
+    margin-top: 120px;
+}
+
+.contact-section {
+    margin-top: 20rem;
+}
+
+.about-title,
+.contact-title {
+    font-size: 2rem;
+    font-weight: 900;
+    margin-bottom: 20px;
+    color: #0a84ff;
+}
+
+.about-text {
+    font-size: 1rem;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* Formulários */
+form label {
+    display: block;
+    margin-top: 15px;
+    font-weight: 700;
+}
+
+form input,
+form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 6px;
+    border-radius: 6px;
+    border: none;
+    background-color: #2e2e2e;
+    color: #e4e4e7;
+    font-size: 1rem;
+    resize: vertical;
+}
+
+form button:hover,
+form button:focus {
+    background-color: #0056b3;
+    outline: none;
+}
+
+/* Rodapé */
+footer {
+    background-color: #1e1e1e;
+    text-align: center;
+    padding: 15px 10px;
+    color: #777;
+    font-size: 0.9rem;
+    margin-top: 60px;
+}
+
+.menu {
+    background-color: #0a84ff;
+    padding: 14px 30px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.menu-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.menu-links {
+    display: flex;
+    gap: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.menu-links a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.menu-links a:hover {
+    text-decoration: underline;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.search-form input {
+    padding: 6px 12px;
+    border-radius: 6px;
+    border: none;
+    font-size: 1rem;
+}
+
+.search-form button {
+    background-color: #1f2937;
+    color: white;
+    border: none;
+    padding: 6px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+/* Menu lateral */
+.side-menu {
+    position: fixed;
+    top: 0;
+    left: -250px;
+    width: 250px;
+    height: 100%;
+    background-color: #0a84ff;
+    color: white;
+    padding: 30px 20px;
+    box-shadow: 2px 0 12px rgba(0, 0, 0, 0.2);
+    transition: left 0.3s ease;
+    z-index: 999;
+}
+
+.side-menu ul {
+    list-style: none;
+    padding: 0;
+}
+
+.side-menu ul li {
+    margin: 20px 0;
+}
+
+.side-menu ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2rem;
+    font-weight: bold;
+}
+
+.side-menu button {
+    background: none;
+    border: none;
+    color: white;
+    font-size: 2rem;
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    cursor: pointer;
+}
+
+/* Menu visível */
+.side-menu.active {
+    left: 0;
+}

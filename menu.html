@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <title>Menu Lateral Simples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+        }
+
+        /* Menu lateral */
+        #menuLateral {
+            height: 100%;
+            width: 0;
+            position: fixed;
+            z-index: 1000;
+            top: 0;
+            left: 0;
+            background-color: #111;
+            overflow-x: hidden;
+            transition: 0.3s;
+            padding-top: 60px;
+        }
+
+        #menuLateral a {
+            padding: 10px 30px;
+            text-decoration: none;
+            font-size: 18px;
+            color: white;
+            display: block;
+            transition: 0.2s;
+        }
+
+        #menuLateral a:hover {
+            background-color: #575757;
+        }
+
+        #btnAbrir {
+            font-size: 20px;
+            cursor: pointer;
+            background-color: #111;
+            color: white;
+            padding: 10px 15px;
+            border: none;
+            position: fixed;
+            top: 15px;
+            left: 15px;
+            z-index: 1100;
+        }
+
+        #conteudo {
+            padding: 20px;
+            margin-left: 0;
+            transition: margin-left 0.3s;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="btnAbrir">&#9776; Abrir Menu</button>
+
+    <div id="menuLateral">
+        <a href="javascript:void(0)" id="fecharMenu">&times; Fechar</a>
+        <a href="#">Home</a>
+        <a href="#">Sobre</a>
+        <a href="#">Serviços</a>
+        <a href="#">Contato</a>
+    </div>
+
+    <div id="conteudo">
+        <h1>Bem-vindo ao meu site!</h1>
+        <p>Este é o conteúdo principal do site.</p>
+        <p>Você pode colocar aqui o que quiser: textos, imagens, vídeos, etc.</p>
+    </div>
+
+    <script>
+        window.onload = function () {
+            const menu = document.getElementById('menuLateral');
+            const btnAbrir = document.getElementById('btnAbrir');
+            const btnFechar = document.getElementById('fecharMenu');
+            const conteudo = document.getElementById('conteudo');
+
+            btnAbrir.onclick = function () {
+                menu.style.width = '250px';
+                conteudo.style.marginLeft = '250px';
+                btnAbrir.style.display = 'none';
+            }
+
+            btnFechar.onclick = function () {
+                menu.style.width = '0';
+                conteudo.style.marginLeft = '0';
+                btnAbrir.style.display = 'block';
+            }
+        };
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Loja Digital Suprema - Tecnologia, inovação e qualidade" />
+    <meta name="author" content="Caleb Developer" />
+    <title>Loja Digital Suprema - Home</title>
+    <style>
+        /* Reset Básico */
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Fontes */
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
+            color: #f0f0f0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        /* Header */
+        header {
+            background: rgba(15, 32, 39, 0.95);
+            padding: 15px 40px;
+            position: fixed;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 9999;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.6);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            transition: background 0.3s ease;
+        }
+
+        header.scrolled {
+            background: rgba(15, 32, 39, 1);
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.8);
+        }
+
+        .logo {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: #00bcd4;
+            cursor: pointer;
+            user-select: none;
+            text-shadow: 1px 1px 4px #007d8a;
+            letter-spacing: 2px;
+        }
+
+        nav {
+            display: flex;
+            gap: 30px;
+        }
+
+        nav a {
+            color: #f0f0f0;
+            font-weight: 500;
+            text-decoration: none;
+            padding: 8px 12px;
+            border-radius: 4px;
+            transition: background 0.3s, color 0.3s;
+            position: relative;
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            background: #00bcd4;
+            bottom: 0;
+            left: 0;
+            transition: width 0.3s;
+        }
+
+        nav a:hover,
+        nav a:focus {
+            color: #00bcd4;
+            background: rgba(0, 188, 212, 0.15);
+        }
+
+        nav a:hover::after,
+        nav a:focus::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            cursor: pointer;
+            flex-direction: column;
+            gap: 5px;
+        }
+
+        .menu-toggle span {
+            width: 25px;
+            height: 3px;
+            background: #00bcd4;
+            border-radius: 2px;
+            transition: all 0.3s;
+        }
+
+        /* Banner principal */
+        .banner {
+            margin-top: 80px;
+            position: relative;
+            height: 500px;
+            overflow: hidden;
+            box-shadow: inset 0 0 100px rgba(0, 0, 0, 0.6);
+            border-radius: 12px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .banner-slide {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center center;
+            opacity: 0;
+            transition: opacity 1.2s ease-in-out;
+        }
+
+        .banner-slide.active {
+            opacity: 1;
+            z-index: 10;
+        }
+
+        .banner-text {
+            position: absolute;
+            bottom: 60px;
+            left: 40px;
+            color: #00bcd4;
+            text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+            max-width: 500px;
+        }
+
+        .banner-text h1 {
+            font-size: 3.8rem;
+            margin-bottom: 10px;
+            font-weight: 900;
+            line-height: 1.1;
+        }
+
+        .banner-text p {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 1.2px;
+        }
+
+        .banner-buttons {
+            margin-top: 20px;
+        }
+
+        .banner-buttons button {
+            padding: 14px 30px;
+            margin-right: 20px;
+            border: none;
+            border-radius: 30px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+            background: #00bcd4;
+            color: #0f2027;
+        }
+
+        .banner-buttons button:hover {
+            background: #007d8a;
+            box-shadow: 0 10px 30px rgba(0, 125, 138, 0.7);
+        }
+
+        /* Seção Produtos */
+        section.products {
+            padding: 60px 40px;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background: rgba(15, 32, 39, 0.85);
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.5);
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.4s ease, box-shadow 0.4s ease;
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 15px 40px rgba(0, 188, 212, 0.7);
+        }
+
+        .product-img {
+            width: 100%;
+            aspect-ratio: 4/3;
+            object-fit: cover;
+            border-bottom: 4px solid #00bcd4;
+            transition: transform 0.6s ease;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: #00bcd4;
+            margin-bottom: 10px;
+            letter-spacing: 1.2px;
+            text-transform: uppercase;
+        }
+
+        .product-description {
+            flex-grow: 1;
+            font-size: 1rem;
+            line-height: 1.4;
+            color: #ddd;
+            margin-bottom: 15px;
+        }
+
+        .product-price {
+            font-size: 1.4rem;
+            font-weight: 900;
+            color: #00e5ff;
+            margin-bottom: 15px;
+        }
+
+        .product-rating {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 15px;
+        }
+
+        .star {
+            color: #ffd700;
+            font-size: 1.2rem;
+        }
+
+        .btn-buy {
+            background: #00bcd4;
+            border: none;
+            padding: 12px 0;
+            font-weight: 700;
+            font-size: 1.1rem;
+            border-radius: 25px;
+            color: #0f2027;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            box-shadow: 0 8px 20px rgba(0, 188, 212, 0.3);
+        }
+
+        .btn-buy:hover {
+            background: #007d8a;
+            box-shadow: 0 12px 30px rgba(0, 125, 138, 0.7);
+        }
+
+        /* Seção Sobre */
+        section.about {
+            background: linear-gradient(135deg, #203a43, #2c5364);
+            padding: 80px 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+            color: #e1e1e1;
+        }
+
+        section.about h2 {
+            font-size: 2.8rem;
+            margin-bottom: 20px;
+            font-weight: 900;
+            color: #00bcd4;
+            text-align: center;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        section.about p {
+            font-size: 1.3rem;
+            line-height: 1.7;
+            text-align: justify;
+            max-width: 900px;
+            margin: 0 auto 40px;
+            letter-spacing: 1px;
+        }
+
+        .timeline {
+            position: relative;
+            max-width: 900px;
+            margin: 0 auto;
+            padding-left: 30px;
+            border-left: 3px solid #00bcd4;
+        }
+
+        .timeline-item {
+            margin-bottom: 40px;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -13px;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            background: #00bcd4;
+            border-radius: 50%;
+            box-shadow: 0 0 10px #00bcd4;
+        }
+
+        .timeline-item h3 {
+            font-size: 1.6rem;
+            margin-bottom: 5px;
+            font-weight: 700;
+            color: #00e5ff;
+        }
+
+        .timeline-item p {
+            font-size: 1rem;
+            color: #ccc;
+            max-width: 700px;
+            margin-left: 40px;
+        }
+
+        /* Depoimentos */
+        section.testimonials {
+            padding: 80px 40px;
+            background: #0f2027;
+            color: #f0f0f0;
+            max-width: 1100px;
+            margin: 0 auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+        }
+
+        section.testimonials h2 {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 50px;
+            color: #00bcd4;
+            text-align: center;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .testimonial-cards {
+            display: flex;
+            gap: 40px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .testimonial-card {
+            background: rgba(15, 32, 39, 0.85);
+            border-radius: 12px;
+            box-shadow: 0 6px 20px rgba(0, 188, 212, 0.4);
+            padding: 30px;
+            max-width: 320px;
+            flex-grow: 1;
+            transition: transform 0.4s ease;
+            cursor: default;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+            user-select: none;
+        }
+
+        .testimonial-card:hover {
+            transform: scale(1.1);
+            box-shadow: 0 12px 30px rgba(0, 188, 212, 0.7);
+        }
+
+        .testimonial-photo {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            overflow: hidden;
+            margin-bottom: 20px;
+            box-shadow: 0 0 15px #00bcd4;
+            border: 3px solid #00bcd4;
+        }
+
+        .testimonial-photo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .testimonial-name {
+            font-weight: 700;
+            font-size: 1.2rem;
+            margin-bottom: 10px;
+            color: #00e5ff;
+            letter-spacing: 1.5px;
+        }
+
+        .testimonial-text {
+            font-size: 1rem;
+            color: #ccc;
+            font-style: italic;
+            line-height: 1.5;
+        }
+
+        /* FAQ */
+        section.faq {
+            padding: 80px 40px;
+            background: linear-gradient(135deg, #203a43, #2c5364);
+            color: #e1e1e1;
+            max-width: 1100px;
+            margin: 0 auto 80px auto;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        section main {
+            flex: 1;
+            padding: 40px 60px;
+            background: linear-gradient(135deg, #f0f4f8, #d9e2ec);
+            display: flex;
+            flex-direction: column;
+            gap: 60px;
+        }
+
+        /* Seção Banner */
+        .banner {
+            position: relative;
+            width: 100%;
+            height: 280px;
+            /* altura fixa */
+            background: url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1470&q=80') no-repeat center/cover;
+            border-radius: 16px;
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.15);
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            text-shadow: 0 2px 6px rgba(0, 0, 0, 0.8);
+            font-size: 1.8rem;
+            font-weight: 900;
+            font-family: 'Roboto', sans-serif;
+            padding: 0 20px;
+            /* pode ajustar esse padding se precisar */
+            box-sizing: border-box;
+            margin-bottom: 40px;
+            /* espaço entre banner e produtos */
+        }
+
+        /* Seção Produtos */
+        .products-section {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 32px;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.1);
+            display: flex;
+            flex-direction: column;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            overflow: hidden;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 18px 36px rgba(0, 0, 0, 0.15);
+            cursor: pointer;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            border-bottom: 1px solid #eee;
+            border-top-left-radius: 16px;
+            border-top-right-radius: 16px;
+            transition: transform 0.5s ease;
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-details {
+            padding: 20px;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-title {
+            font-size: 1.4rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #1f2937;
+        }
+
+        .product-description {
+            flex: 1;
+            font-size: 1rem;
+            color: #555;
+            margin-bottom: 16px;
+            line-height: 1.4;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #0a84ff;
+            margin-bottom: 20px;
+        }
+
+        .btn-buy {
+            background-color: #0a84ff;
+            border: none;
+            color: white;
+            padding: 14px;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            box-shadow: 0 8px 20px rgba(10, 132, 255, 0.4);
+        }
+
+        .btn-buy:hover {
+            background-color: #0066d6;
+            box-shadow: 0 10px 28px rgba(0, 102, 214, 0.6);
+        }
+
+        /* Seção Sobre */
+        .about-section {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 40px;
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+            color: #222;
+            line-height: 1.6;
+            font-size: 1.1rem;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        .about-title {
+            font-size: 2.8rem;
+            font-weight: 900;
+            margin-bottom: 24px;
+            text-align: center;
+            color: #1f2937;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+        }
+
+        .about-text {
+            max-width: 850px;
+            margin: 0 auto;
+            color: #4b5563;
+        }
+
+        /* Seção Contato */
+        .contact-section {
+            max-width: 700px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 40px 30px;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.12);
+        }
+
+        .contact-title {
+            font-size: 2.4rem;
+            font-weight: 800;
+            color: #1f2937;
+            margin-bottom: 20px;
+            text-align: center;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        label {
+            font-weight: 700;
+            color: #374151;
+            font-size: 1rem;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        textarea {
+            padding: 14px 20px;
+            border-radius: 14px;
+            border: 1.8px solid #d1d5db;
+            font-size: 1.1rem;
+            font-family: 'Roboto', sans-serif;
+            resize: vertical;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="text"]:focus,
+        input[type="email"]:focus,
+        textarea:focus {
+            outline: none;
+            border-color: #0a84ff;
+            box-shadow: 0 0 10px rgba(10, 132, 255, 0.3);
+        }
+
+        textarea {
+            min-height: 120px;
+            font-size: 1.05rem;
+            line-height: 1.4;
+        }
+
+        button[type="submit"] {
+            background-color: #0a84ff;
+            color: white;
+            border: none;
+            padding: 18px 30px;
+            border-radius: 14px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            box-shadow: 0 10px 25px rgba(10, 132, 255, 0.4);
+        }
+
+        button[type="submit"]:hover {
+            background-color: #0066d6;
+            box-shadow: 0 14px 30px rgba(0, 102, 214, 0.6);
+        }
+
+        /* Rodapé */
+        footer {
+            background-color: #1f2937;
+            color: #e4e4e7;
+            text-align: center;
+            padding: 20px 40px;
+            font-size: 1rem;
+            letter-spacing: 0.05em;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Responsividade */
+        @media (max-width: 900px) {
+            main {
+                padding: 30px 20px;
+            }
+
+            .banner {
+                font-size: 2.2rem;
+                height: 280px;
+            }
+
+            .product-card {
+                max-width: 100%;
+            }
+
+            /* Espaçamento vertical entre as seções */
+            .products-section {
+                padding: 2rem 1rem 3rem;
+                /* mais espaço embaixo */
+                background-color: #f9f9f9;
+                /* só para visualizar */
+            }
+
+            .about-section {
+                padding: 3rem 1rem;
+                background-color: #ffffff;
+                margin-top: 3rem;
+                /* distância do #products */
+            }
+
+            /* Espaçamento e layout dos cards */
+            .product-card {
+                background: white;
+                border-radius: 8px;
+                box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+                margin-bottom: 2rem;
+                /* espaço entre cards */
+                display: flex;
+                gap: 1rem;
+                padding: 1rem;
+                align-items: center;
+            }
+
+            /* Ajuste para responsividade */
+            @media (max-width: 900px) {
+                /* ... */
+            }
+
+            @media (max-width: 768px) {
+                .product-card {
+                    flex-direction: column;
+                    text-align: center;
+                }
+            }
+
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <div class="logo" style="font-weight:900; font-size:2rem; color:#0a84ff; letter-spacing:0.1em;">
+            Loja Digital
+        </div>
+
+        <nav>
+            <a href="#products"
+                style="color:#e4e4e7; text-decoration:none; font-weight:700; margin: 0 20px;">Produtos</a>
+            <a href="#about" style="color:#e4e4e7; text-decoration:none; font-weight:700; margin: 0 20px;">Sobre</a>
+            <a href="#contact" style="color:#e4e4e7; text-decoration:none; font-weight:700; margin: 0 20px;">Contato</a>
+        </nav>
+    </header>
+
+    <main>
+        <section class="banner" aria-label="Banner de destaque">
+            Tecnologia que transforma seu dia
+        </section>
+
+        <section id="products" class="products-section" aria-label="Seção de produtos digitais">
+            <!-- Produto 1 -->
+            <div class="product-card" tabindex="0" aria-labelledby="product1-title" role="group">
+                <img class="product-image"
+                    src="https://i.ytimg.com/vi/MWDSUwU8bv4/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLA6bXMQe5sMnLodMSsTaV74ECJClw"
+                    alt="Curso online de IA" />
+                <div class="product-details">
+                    <h2 id="product1-title" class="product-title">Curso Online: Introdução à IA</h2>
+                    <p class="product-description">Aprenda os conceitos básicos e técnicas para criar seus próprios
+                        projetos de
+                        inteligência artificial.</p>
+                    <div class="product-price">R$ 299,90</div>z
+                    <a href="https://forms.gle/RnDxfr5wNrwCc8eJ6" target="_blank" class="btn-buy">
+                        Comprar
+
+                    </a>
+                </div>
+            </div>
+
+            <!-- Produto 2 -->
+            <div class="product-card" tabindex="0" aria-labelledby="product2-title" role="group">
+                <img class="product-image"
+                    src="https://static.claspo.io/var/www/html/public/photos/shares/ContentImages/7_Best_AI_Design_Tools/Midjourney.webp"
+                    alt="Pacote de Templates para Design Gráfico" />
+                <div class="product-details">
+                    <h2 id="product2-title" class="product-title">Templates para Design Gráfico IA</h2>
+                    <p class="product-description">Mais de 20 templates criados por IA para você usar em apresentações,
+                        redes sociais e projetos criativos.</p>
+                    <div class="product-price">R$ 149,90</div>
+                    <a href="https://forms.gle/RnDxfr5wNrwCc8eJ6" target="_blank" class="btn-buy">
+                        Comprar
+                    </a>
+                </div>
+            </div>
+
+            <!-- Produto 3 -->
+            <div class="product-card" tabindex="0" aria-labelledby="product3-title" role="group">
+                <img class="product-image" src="https://www.inovabs.com.br/shared/upload/acon_blog/17_2731_4076.jpg"
+                    alt="Assistente virtual para tarefas" />
+                <div class="product-details">
+                    <h2 id="product3-title" class="product-title">Assistente Virtual Personalizado</h2>
+                    <p class="product-description">Um assistente IA para automatizar suas tarefas diárias, responder
+                        perguntas e otimizar seu tempo.</p>
+                    <div class="product-price">R$ 499,90</div>
+                    <a href="https://forms.gle/RnDxfr5wNrwCc8eJ6" target="_blank" class="btn-buy">
+                        Comprar
+                    </a>
+
+                </div>
+
+            </div>
+            </div>
+
+            <!-- Produto 4 -->
+            <div class="product-card" tabindex="0" aria-labelledby="product4-title" role="group">
+                <img class="product-image"
+                    src="https://telmocreations.com.br/wp-content/uploads/2025/05/IA-que-Cria-Imagens-Gratis-telmo-creations.webp"
+                    alt="Pacote de arte digital criada por IA" />
+                <div class="product-details">
+                    <h2 id="product4-title" class="product-title">Pacote de Arte Digital IA</h2>
+                    <p class="product-description">Coleção exclusiva de artes digitais criadas por IA, ideal para
+                        projetos
+                        gráficos e decoração.</p>
+                    <div class="product-price">R$ 199,90</div>
+                    <a href="https://forms.gle/RnDxfr5wNrwCc8eJ6" target="_blank" class="btn-buy">
+                        Comprar
+                    </a>
+
+                </div>
+            </div>
+            </div>
+
+            <!-- Produto 5 -->
+            <div class="product-card" tabindex="0" aria-labelledby="product5-title" role="group">
+                <img class="product-image"
+                    src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2340&q=80"
+                    alt="Relatórios personalizados gerados por IA" />
+                <div class="product-details">
+                    <h2 id="product5-title" class="product-title">Relatórios Inteligentes Personalizados</h2>
+                    <p class="product-description">Receba relatórios detalhados e personalizados para sua empresa ou
+                        estudo,
+                        criados por IA.</p>
+                    <div class="product-price">R$ 349,90</div>
+                    <a href="https://forms.gle/RnDxfr5wNrwCc8eJ6" target="_blank" class="btn-buy">
+                        Comprar
+                    </a>
+
+                </div>
+            </div>
+            <!-- Produto 6 -->
+            <div class="product-card" tabindex="0" aria-labelledby="product5-title" role="group">
+                <img class="product-image"
+                    src="https://www.uniftc.edu.br/wp-content/uploads/2022/07/noticias_11282017_pet-2.jpg"
+                    alt="Pacote Estudante" />
+                <div class="product-details">
+                    <h2 id="product5-title" class="product-title">Pacote Professor (slides)</h2>
+                    <p class="product-description">PAcote d Professor - slides de todos os assuntos!</p>
+                    <div class="product-price">R$ 119,90</div>
+                    <a href="https://forms.gle/RnDxfr5wNrwCc8eJ6" target="_blank" class="btn-buy">
+                        Comprar
+                    </a>
+
+
+                </div>
+            </div </section>
+
+
+            <section id="about" class="about-section" aria-labelledby="about-title">
+                <h2 id="about-title" class="about-title">Sobre Nossa Loja</h2>
+                <p class="about-text">
+                    Na Loja Digital, acreditamos que a tecnologia deve estar ao alcance de todos. Nosso compromisso é
+                    oferecer produtos de alta qualidade, inovação constante e um atendimento que faz você se sentir em
+                    casa.
+                    Fundada em 21 de Maio de 2010, crescemos com nossos clientes e continuamos a investir em novas
+                    soluções
+                    para melhorar
+                    a sua experiência.
+                </p>
+                <p class="about-text">
+                    Valorizamos a transparência, a ética e a sustentabilidade em todas as nossas operações. Venha
+                    conhecer
+                    nossa história e fazer parte dessa jornada tecnológica com a gente.
+                </p>
+            </section>
+
+            <section id="contact" class="contact-section" aria-labelledby="contact-title">
+                <h2 id="contact-title" class="contact-title">Fale Conosco</h2>
+                <form aria-describedby="form-instructions" id="contact-form">
+                    <p id="form-instructions" class="sr-only">Preencha o formulário para enviar uma mensagem para nossa
+                        equipe.</p>
+                    <label for="name">Nome Completo</label>
+                    <input type="text" id="name" name="name" required placeholder="Seu nome" aria-required="true" />
+
+                    <label for="email">E-mail</label>
+                    <input type="email" id="email" name="email" required placeholder="seuemail@exemplo.com"
+                        aria-required="true" />
+
+                    <label for="message">Mensagem</label>
+                    <textarea id="message" name="message" required placeholder="Escreva sua mensagem aqui..."
+                        aria-required="true"></textarea>
+
+                    <button type="submit">Enviar</button>
+                </form>
+            </section>
+    </main>
+
+    <body>
+        <footer>
+            &copy; 2025 Loja Digital. Todos os direitos reservados. Desenvolvido por Caleb.
+        </footer>
+
+        <script>
+
+        </script>
+
+    </body>
+
+</html>
